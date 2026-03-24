@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deepak Kundu - Portfolio</title>
+    <title>Deepak Kundu - Full-Stack Developer</title>
     <style>
         /* CSS Variables for a Glassmorphism Theme */
         :root {
-            --glass-bg: rgba(255, 255, 255, 0.15);
-            --glass-border: rgba(255, 255, 255, 0.3);
+            --glass-bg: rgba(255, 255, 255, 0.12);
+            --glass-border: rgba(255, 255, 255, 0.25);
             --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
             --text-main: #ffffff;
-            --text-muted: #f1f5f9;
-            --accent-color: #ffe600; /* Bright yellow for pops of color */
+            --text-muted: #e2e8f0;
+            --accent-color: #ffe600; 
+            --accent-hover: #ffcc00;
         }
 
         * {
@@ -39,18 +40,17 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Glass Text Shadow for readability */
         h1, h2, h3, p, a {
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
-        /* Navigation - Glass Effect */
+        /* Navigation */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
             padding: 20px 50px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.2);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             border-bottom: 1px solid var(--glass-border);
@@ -70,7 +70,7 @@
         nav ul {
             display: flex;
             list-style: none;
-            gap: 25px;
+            gap: 30px;
         }
 
         nav a {
@@ -82,7 +82,6 @@
 
         nav a:hover {
             color: var(--accent-color);
-            transform: scale(1.1);
         }
 
         /* Hero Section */
@@ -98,24 +97,36 @@
 
         .hero h1 {
             font-size: 4.5rem;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             font-weight: 800;
-            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            letter-spacing: 1px;
+        }
+
+        .hero h2 {
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            font-weight: 600;
+            border: none;
         }
 
         .hero p {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             color: var(--text-muted);
-            max-width: 600px;
-            margin-bottom: 35px;
-            font-weight: 500;
+            max-width: 650px;
+            margin-bottom: 40px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 20px;
         }
 
         .btn {
-            padding: 15px 35px;
+            padding: 12px 30px;
             background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
+            border: 2px solid var(--accent-color);
             color: white;
             text-decoration: none;
             border-radius: 50px;
@@ -126,9 +137,21 @@
         }
 
         .btn:hover {
-            background: rgba(255, 255, 255, 0.4);
-            transform: translateY(-5px);
-            color: var(--accent-color);
+            background: var(--accent-color);
+            color: #333;
+            transform: translateY(-3px);
+            text-shadow: none;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border-color: white;
         }
 
         /* Sections General */
@@ -136,14 +159,14 @@
             padding: 100px 10%;
         }
 
-        section h2 {
-            font-size: 3rem;
-            margin-bottom: 50px;
+        section h2.section-title {
+            font-size: 2.5rem;
+            margin-bottom: 60px;
             text-align: center;
             color: white;
             text-transform: uppercase;
             letter-spacing: 2px;
-            border-bottom: 2px solid var(--accent-color);
+            border-bottom: 3px solid var(--accent-color);
             display: inline-block;
             padding-bottom: 10px;
             position: relative;
@@ -151,79 +174,156 @@
             transform: translateX(-50%);
         }
 
+        /* About Section */
+        .about-text {
+            text-align: center;
+            max-width: 800px;
+            margin: auto;
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            background: var(--glass-bg);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+        }
+
         /* Skills Section */
+        .skills-wrapper {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .skill-category h3 {
+            text-align: center;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
         .skills-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 20px;
+            gap: 15px;
         }
 
         .skill-tag {
             background: var(--glass-bg);
             backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
             border: 1px solid var(--glass-border);
-            padding: 12px 25px;
-            border-radius: 30px;
-            font-weight: bold;
-            font-size: 1.1rem;
-            box-shadow: var(--glass-shadow);
-            transition: transform 0.3s, background 0.3s;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: transform 0.3s, border-color 0.3s;
         }
 
         .skill-tag:hover {
-            transform: translateY(-5px) scale(1.05);
-            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px) scale(1.05);
+            border-color: var(--accent-color);
             color: var(--accent-color);
         }
 
-        /* Projects Section (Grid) */
+        /* Projects Section */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 40px;
         }
 
         .card {
             background: var(--glass-bg);
             backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
             border: 1px solid var(--glass-border);
-            padding: 30px;
+            padding: 35px;
             border-radius: 20px;
             transition: all 0.4s ease;
             box-shadow: var(--glass-shadow);
+            display: flex;
+            flex-direction: column;
         }
 
         .card:hover {
-            transform: translateY(-15px);
-            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.18);
             border-color: var(--accent-color);
         }
 
         .card h3 {
-            margin-bottom: 15px;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             color: var(--accent-color);
+            margin-bottom: 10px;
         }
 
         .tech-stack {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: bold;
             color: #fff;
             margin-bottom: 20px;
-            background: rgba(0, 0, 0, 0.3);
-            padding: 5px 10px;
-            border-radius: 5px;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 8px 15px;
+            border-radius: 8px;
             display: inline-block;
+            letter-spacing: 1px;
+        }
+
+        .project-details {
+            margin-bottom: 25px;
+            flex-grow: 1;
+        }
+
+        .project-details p {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .project-details strong {
+            color: white;
+        }
+
+        .project-links a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: bold;
+            border-bottom: 1px solid transparent;
+            transition: border-bottom 0.3s;
+            margin-right: 15px;
+        }
+
+        .project-links a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+
+        /* Certifications List */
+        .cert-list {
+            max-width: 700px;
+            margin: auto;
+            background: var(--glass-bg);
+            padding: 30px 40px;
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .cert-item {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        
+        .cert-item:last-child {
+            margin-bottom: 0;
         }
 
         /* Hidden class for JS animation */
         .hidden {
             opacity: 0;
-            transform: translateY(50px);
-            transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .show {
@@ -233,11 +333,10 @@
         
         /* Footer */
         footer {
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(10px);
             border-top: 1px solid var(--glass-border);
             padding: 50px 10% 30px;
-            margin-top: 60px;
             text-align: center;
         }
 
@@ -253,14 +352,14 @@
             display: flex;
             justify-content: center;
             gap: 30px;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .footer-socials a {
             color: white;
             text-decoration: none;
-            font-weight: bold;
-            font-size: 1.2rem;
+            font-weight: 600;
+            font-size: 1.1rem;
             transition: color 0.3s;
         }
 
@@ -280,12 +379,11 @@
                 gap: 15px;
                 padding: 15px;
             }
-            .hero h1 {
-                font-size: 3rem;
-            }
-            section {
-                padding: 60px 5%;
-            }
+            .hero h1 { font-size: 3rem; }
+            .hero h2 { font-size: 1.5rem; }
+            section { padding: 80px 5%; }
+            .btn-group { flex-direction: column; width: 100%; max-width: 300px; margin: 0 auto;}
+            .btn { width: 100%; text-align: center; }
         }
     </style>
 </head>
@@ -302,89 +400,157 @@
     </nav>
 
     <section id="home" class="hero hidden">
-        <h1>Deepak Kundu </h1>
-        <p>Motivated and detail-oriented aspiring Full-Stack Web Developer with a strong foundation in front-end technologies and a growing expertise in the MERN stack.</p>
-        <a href="#projects" class="btn">View My Work</a>
+        <h1>Deepak Kundu</h1>
+        <h2>Full-Stack Web Developer</h2>
+        <p>I specialize in building scalable, user-centric web applications using the MERN stack. Eager to solve complex logical problems through clean, efficient code.</p>
+        <div class="btn-group">
+            <a href="#projects" class="btn">View My Work</a>
+            <a href="path-to-your-resume.pdf" target="_blank" class="btn btn-outline">Download Resume</a>
+        </div>
     </section>
 
     <section id="about" class="hidden">
-        <h2>About Me</h2>
-        <p style="text-align: center; max-width: 800px; margin: auto; font-size: 1.1rem;">
-            I am eager to leverage project-based experience and foundational networking knowledge in a dynamic internship role to build scalable, market-ready applications. I have a proven ability to build responsive, interactive web applications and solve logical problems through code. Based in Haryana.
-        </p>
+        <h2 class="section-title">About Me</h2>
+        <div class="about-text">
+            I am an aspiring Full-Stack Developer based in Haryana, highly motivated to leverage my project-based experience and foundational networking knowledge in a dynamic internship role. My focus is on developing robust architectures—from responsive front-end interfaces to secure, database-driven back-ends—to deliver market-ready digital solutions.
+        </div>
     </section>
 
     <section id="skills" class="hidden">
-        <h2>Technical Arsenal</h2>
-        <div class="skills-container">
-            <div class="skill-tag">HTML5, CSS3, JavaScript</div>
-            <div class="skill-tag">React.js & Tailwind CSS </div>
-            <div class="skill-tag">Node.js & Express.js </div>
-            <div class="skill-tag">MongoDB </div>
-            <div class="skill-tag">EJS </div>
-            <div class="skill-tag">Git & GitHub </div>
-            <div class="skill-tag">Data Structures & Algorithms </div>
+        <h2 class="section-title">Technical Arsenal</h2>
+        <div class="skills-wrapper">
+            
+            <div class="skill-category">
+                <h3>Front-End</h3>
+                <div class="skills-container">
+                    <div class="skill-tag">HTML5 & CSS3</div>
+                    <div class="skill-tag">JavaScript (ES6+)</div>
+                    <div class="skill-tag">React.js</div>
+                    <div class="skill-tag">Tailwind CSS</div>
+                    <div class="skill-tag">EJS</div>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>Back-End & Database</h3>
+                <div class="skills-container">
+                    <div class="skill-tag">Node.js</div>
+                    <div class="skill-tag">Express.js</div>
+                    <div class="skill-tag">MongoDB</div>
+                    <div class="skill-tag">RESTful APIs</div>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>Tools & Concepts</h3>
+                <div class="skills-container">
+                    <div class="skill-tag">Git & GitHub</div>
+                    <div class="skill-tag">Data Structures</div>
+                    <div class="skill-tag">Networking Basics</div>
+                </div>
+            </div>
+
         </div>
     </section>
 
     <section id="projects" class="hidden">
-        <h2>Featured Projects</h2>
+        <h2 class="section-title">Featured Projects</h2>
         <div class="projects-grid">
             
             <div class="card">
-                <h3>Fullstack Cafe </h3>
-                <div class="tech-stack">Node.js | Express | MongoDB | EJS </div>
-                <p>Developed structural architecture for dynamic web applications focusing on data management and user interaction. Implemented server-side logic and database integration.</p>
+                <h3>Fullstack Cafe</h3>
+                <div class="tech-stack">Node.js | Express | MongoDB | EJS</div>
+                <div class="project-details">
+                    <p><strong>Overview:</strong> A dynamic web application tailored for cafe management and customer interaction.</p>
+                    <p><strong>Contribution:</strong> Engineered the structural architecture and server-side logic. Integrated a MongoDB database to securely handle dynamic menu updates and user data.</p>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/deepakkundu4908/kundu-cafe" target="_blank">View Source Code →</a>
+                </div>
             </div>
 
             <div class="card">
-                <h3>Web-Based Calculator</h3>
-                <div class="tech-stack">HTML5 | CSS3 | JavaScript </div>
-                <p>Built a fully functional, grid-based arithmetic calculator. Implemented custom logic for "Clear" and "Delete" functions using DOM manipulation and event handling.</p>
-                <a href=" https://deepakkundu4908.github.io/calculator/"> Browse my project </a>
+                <h3>University Management System</h3>
+                <div class="tech-stack">MERN Stack | Node.js | MongoDB</div>
+                <div class="project-details">
+                    <p><strong>Overview:</strong> A centralized platform designed to streamline administrative tasks and student data tracking for educational institutions.</p>
+                    <p><strong>Contribution:</strong> Architected the backend routing and database schemas to manage complex relational data between courses, faculty, and student enrollments.</p>
+                </div>
+                <div class="project-links">
+                    <a href="#" target="_blank">View Source Code →</a>
+                </div>
             </div>
 
             <div class="card">
-                <h3>Stone-Paper-Scissor Game </h3>
-                <div class="tech-stack">HTML5 | CSS3 | JavaScript </div>
-                <p>Developed a browser-based interactive game demonstrating logic-based programming and real-time state management. Engineered JavaScript logic to handle random computer-choice generation.</p>
-                <a href=" https://deepakkundu4908.github.io/stone-paperGame/"> Enjoy the game </a>
+                <h3>Interactive Calculator</h3>
+                <div class="tech-stack">HTML5 | CSS3 | Vanilla JS</div>
+                <div class="project-details">
+                    <p><strong>Overview:</strong> A fully responsive, grid-based arithmetic calculator.</p>
+                    <p><strong>Contribution:</strong> Implemented comprehensive DOM manipulation and event handling to manage complex edge cases in real-time arithmetic logic, including secure memory clearing functions.</p>
+                </div>
+                <div class="project-links">
+                    <a href="https://deepakkundu4908.github.io/calculator/" target="_blank">Live Demo →</a>
+                </div>
             </div>
 
         </div>
     </section>
 
-    <section id="certifications" class="hidden" style="text-align: center;">
-        <h2>Certifications</h2>
-        <div class="card" style="display: inline-block; text-align: left; max-width: 600px; margin: auto;">
-            <p style="margin-bottom: 15px; font-size: 1.1rem;">🏆 Complete HTML (Score: 79%) - KnowledgeGate </p>
-            <p style="margin-bottom: 15px; font-size: 1.1rem;">🛡️ Introduction to Cybersecurity - Cisco </p>
-            <p style="font-size: 1.1rem;">🌐 Networking Basics - Cisco Networking Academy </p>
+    <section id="certifications" class="hidden">
+        <h2 class="section-title">Licenses & Certifications</h2>
+        <div class="cert-list">
+            <div class="cert-item">
+                <span>🤖</span>
+                <div>
+                    <strong>Generative AI & its Impact on the IT Industry</strong><br>
+                    CodeQuotient & Chaudhary Bansi Lal University
+                </div>
+            </div>
+            <div class="cert-item">
+                <span>🛡️</span>
+                <div>
+                    <strong>Introduction to Cybersecurity</strong><br>
+                    Cisco
+                </div>
+            </div>
+            <div class="cert-item">
+                <span>🌐</span>
+                <div>
+                    <strong>Networking Basics</strong><br>
+                    Cisco Networking Academy
+                </div>
+            </div>
+            <div class="cert-item">
+                <span>💻</span>
+                <div>
+                    <strong>Complete HTML (Score: 79%)</strong><br>
+                    KnowledgeGate
+                </div>
+            </div>
         </div>
     </section>
 
     <footer>
-        <div class="footer-content">
-            <div class="footer-logo">DK.</div>
-            <div class="footer-socials">
-                <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
-                <a href="https://github.com/deepakkundu4908" target="_blank">GitHub</a>
-                <a href="mailto:Dkkinala00201@gmail.com">Email</a>
-            </div>
-            <div class="copyright">
-                &copy; 2026 Deepak Kundu. Built with HTML, CSS & JS.
-            </div>
+        <div class="footer-logo">DK.</div>
+        <div class="footer-socials">
+            <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
+            <a href="https://github.com/deepakkundu4908" target="_blank">GitHub</a>
+            <a href="mailto:Dkkinala00201@gmail.com">Dkkinala00201@gmail.com</a>
+        </div>
+        <div class="copyright">
+            &copy; 2026 Deepak Kundu. Built with HTML, CSS & JS.
         </div>
     </footer>
 
     <script>
+        // Smooth reveal animation for sections
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('show');
                 }
             });
-        });
+        }, { threshold: 0.1 });
 
         const hiddenElements = document.querySelectorAll('.hidden');
         hiddenElements.forEach((el) => observer.observe(el));
